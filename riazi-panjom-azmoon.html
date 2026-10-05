@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>آزمون ریاضی پنجم – درس اول</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f1fc;--card:#fff;--tx:#25203a;--mu:#6b6486;--pr:#5b3cc4;--pt:#fff;--bd:#ddd5f2;--ok:#1f8a4c;--okb:#e1f5e9;--no:#c0392b;--nob:#fbe4e1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161324;--card:#211c36;--tx:#eeeaf8;--mu:#a59fc0;--pr:#9b82f0;--pt:#14102a;--bd:#352e55;--ok:#58d68d;--okb:#17342a;--no:#ff8a7a;--nob:#3b1f20}}
+:root[data-theme="dark"]{--bg:#161324;--card:#211c36;--tx:#eeeaf8;--mu:#a59fc0;--pr:#9b82f0;--pt:#14102a;--bd:#352e55;--ok:#58d68d;--okb:#17342a;--no:#ff8a7a;--nob:#3b1f20}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.9}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;margin:8px 0 4px}
+p.s{color:var(--mu);margin:0 0 16px;font-size:.95rem}
+.menu button{display:block;width:100%;text-align:right;background:var(--card);color:var(--tx);border:1.5px solid var(--bd);border-radius:14px;padding:12px 16px;margin-bottom:10px;font:inherit;cursor:pointer}
+.menu button b{display:block;color:var(--pr)}
+.menu button span{font-size:.85rem;color:var(--mu)}
+.q{background:var(--card);border:1.5px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px}
+.q.ok{border-color:var(--ok);background:var(--okb)}.q.bad{border-color:var(--no);background:var(--nob)}
+.q .n{color:var(--pr);font-weight:700;margin-left:6px}
+.q .t{white-space:pre-wrap}
+.o{display:block;width:100%;text-align:right;margin-top:8px;padding:8px 12px;border-radius:10px;border:1.5px solid var(--bd);background:transparent;color:var(--tx);font:inherit;cursor:pointer}
+.o.sel{border-color:var(--pr);background:var(--pr);color:var(--pt)}
+.row{display:flex;gap:8px}.row .o{text-align:center}
+input{width:110px;font:inherit;text-align:center;padding:2px 6px;border:1.5px solid var(--pr);border-radius:8px;background:var(--bg);color:var(--tx);margin:0 4px}
+.a{margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--bg);font-size:.95rem;white-space:pre-wrap;display:none}
+.a.show{display:block}
+.btn{display:block;width:100%;padding:12px;border:0;border-radius:14px;background:var(--pr);color:var(--pt);font:inherit;font-weight:700;cursor:pointer;margin:8px 0}
+.btn.g{background:transparent;color:var(--pr);border:1.5px solid var(--pr)}
+.ch{display:block;text-align:center;text-decoration:none;color:var(--tx);background:var(--card);border:1.5px solid var(--pr);border-radius:14px;padding:14px;margin:16px 0}.ch b{display:block;color:var(--pr);font-size:1.05rem}.ch span{display:block;font-size:.9rem;color:var(--mu)}.ch u{display:inline-block;margin-top:8px;padding:6px 18px;border-radius:10px;background:var(--pr);color:var(--pt);text-decoration:none;font-weight:700}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 12px;background:var(--pr);color:var(--pt);text-decoration:none;font-weight:700;font-size:.95rem;box-shadow:0 2px 8px rgba(0,0,0,.2)}.top u{text-decoration:none;background:var(--pt);color:var(--pr);padding:4px 14px;border-radius:999px;white-space:nowrap}
+.sc{text-align:center;font-size:1.2rem;font-weight:700;padding:14px;border-radius:14px;background:var(--card);border:1.5px solid var(--pr);margin-bottom:12px}
+</style>
+</head>
+<body>
+<a class="top" href="https://rubika.ir/schoolp5" target="_blank" rel="noopener">📢 کانال روبیکا <bdi dir="ltr">@schoolp5</bdi> <u>ورود به کانال</u></a>
+<main id="app"></main>
+<script>
+const FA='۰۱۲۳۴۵۶۷۸۹',fa=s=>String(s).replace(/\d/g,d=>FA[d]),f=n=>fa(String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'٬'));
+const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),pick=a=>a[R(0,a.length-1)];
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){let j=R(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const distinct=l=>{let d;do{d=sh([0,1,2,3,4,5,6,7,8,9]).slice(0,l)}while(!d[0]);return d},num=d=>+d.join('');
+const nz=d=>{let k;do{k=R(0,d.length-1)}while(!d[k]);return k};
+const P=['یکان','دهگان','صدگان','هزار','ده‌هزار','صدهزار','میلیون','ده‌میلیون','صدمیلیون'];
+const O=['','یک','دو','سه','چهار','پنج','شش','هفت','هشت','نه'],T=['ده','یازده','دوازده','سیزده','چهارده','پانزده','شانزده','هفده','هجده','نوزده'],D=['','','بیست','سی','چهل','پنجاه','شصت','هفتاد','هشتاد','نود'],H=['','صد','دویست','سیصد','چهارصد','پانصد','ششصد','هفتصد','هشتصد','نهصد'];
+const w3=n=>{const r=n%100,t=r<10?O[r]:r<20?T[r-10]:D[r/10|0]+(r%10?' و '+O[r%10]:'');return[H[n/100|0],t].filter(Boolean).join(' و ')};
+const words=n=>{const g=['','هزار','میلیون'];let p=[],i=0;while(n){const x=n%1000;if(x)p.unshift(w3(x)+(g[i]?' '+g[i]:''));n=Math.floor(n/1000);i++}return p.join(' و ')};
+const mcQ=(q,a,ds)=>{const o=sh([a,...ds]);return{t:'mc',q,o,c:o.indexOf(a),e:a}};
+const placeMC=(q,pos)=>mcQ(q,P[pos],sh(P.filter((_,i)=>i!=pos)).slice(0,3));
+const numMC=(q,a)=>mcQ(q,f(a),sh([...new Set([a*10,a*100,a/10,a*2,a/2,a+1e4].filter(x=>Number.isInteger(x)&&x>0&&x!=a))]).slice(0,3).map(f));
+const NQ=[
+()=>{const v=2*R(1,9)*pick([1e4,1e5,1e6]);return{t:'نصف '+f(v),a:v/2}},
+()=>{const v=R(2,9)*pick([1e5,1e6,1e7,1e8]);return{t:'سه برابر '+f(v),a:3*v}},
+()=>{const v=5*R(1,9)*pick([1e5,1e6,1e7]);return{t:'خمس '+f(v),a:v/5}},
+()=>{const a=R(11,99),b=R(2,9);return{t:'حاصل '+f(a*1000)+' × '+f(b*100),a:a*b*1e5}},
+()=>{const q=R(2,9),d=R(2,9);return{t:'حاصل '+f(q*d*1e5)+' ÷ '+f(d*1000),a:q*100}},
+()=>{const p=R(11,99),r=R(2,99);return{t:f(p)+' تا صدهزار و '+f(r)+' تا ده‌هزار',a:p*1e5+r*1e4}},
+()=>{const a=R(21,89),b=R(102,987);return{t:'حاصل '+f(a)+' × '+f(b),a:a*b}}];
+const CN=['ضرب','جمع','تفریق'];
+function cardQ(){const c=sh([1,2,3,4,5,6,7,8,9]).slice(0,4),k=R(0,2),r=[];
+ const perm=(a,b=[])=>a.length?a.forEach((x,i)=>perm(a.filter((_,j)=>j!=i),[...b,x])):r.push(b);perm(c);
+ const pr=r.map(p=>[10*p[0]+p[1],10*p[2]+p[3]].sort((x,y)=>y-x)),fn=([a,b])=>k==0?a*b:k==1?a+b:a-b,v=pr.map(fn),best=Math.max(...v);
+ return{q:`با کارت‌های ${c.map(fa).join('، ')} دو عدد دو رقمی بنویسید که حاصل ${CN[k]} آن‌ها بیشترین مقدار ممکن باشد`,a:best,pair:pr[v.indexOf(best)],ds:sh([...new Set(v)].filter(x=>x!=best)).slice(0,3)}}
+const G={
+mc:[
+()=>{const d=distinct(R(7,9)),k=nz(d);return placeMC(`در عدد ${f(num(d))}، رقم ${fa(d[k])} در کدام مرتبه قرار دارد؟`,d.length-1-k)},
+()=>{const d=distinct(4),k=nz(d),p=R(1,4);return placeMC(`اگر عدد ${f(num(d))} را ${f(10**p)} برابر کنیم، رقم ${fa(d[k])} چه مرتبه‌ای پیدا می‌کند؟`,3-k+p)},
+()=>{const m=distinct(R(3,5)),p=R(1,4),k=nz(m);return placeMC(`اگر عدد ${f(num(m)*10**p)} را بر ${f(10**p)} تقسیم کنیم، رقم ${fa(m[k])} چه مرتبه‌ای پیدا می‌کند؟`,m.length-1-k)},
+()=>{const x=pick(NQ)();return numMC(x.t+' چند می‌شود؟',x.a)},
+()=>{const d=distinct(R(5,8)),k=nz(d),pos=d.length-1-k,v=d[k]*10**pos,ds=[pos+1,pos+2,pos+3,pos-1].filter(p=>p>=0).map(p=>d[k]*10**p);return mcQ(`ارزش رقم ${fa(d[k])} در عدد ${f(num(d))} چند است؟`,f(v),sh(ds).slice(0,3).map(f))},
+()=>{const x=cardQ();return mcQ(x.q+'. این مقدار چند است؟',f(x.a),x.ds.map(f))}],
+fill:[
+...[0,1,2].map(()=>()=>{const x=pick(NQ)();return{t:'fill',q:x.t+' می‌شود ___',a:[x.a]}}),
+()=>{const p=R(11,99),r=R(11,99);return{t:'fill',q:`عدد ${f(p*1e6+r*1e4)} از ___ تا یک‌میلیون و ___ تا ده‌هزار ساخته شده است.`,a:[p,r]}},
+()=>{const x=R(11,99)*1e7;return{t:'fill',q:`عدد ${f(x)} از ___ تا ده‌میلیون یا ___ تا صدهزار یا ___ تا هزار ساخته شده است.`,a:[x/1e7,x/1e5,x/1e3]}},
+()=>{const x=cardQ();return{t:'fill',q:x.q+': ___',a:[x.a]}},
+()=>{const d=distinct(8);return{t:'fill',q:`در عدد ${f(num(d))} اختلاف رقم‌های بزرگ‌ترین طبقه (میلیون) چند است؟ ___`,a:[Math.abs(d[0]-d[1])]}}],
+tf:[
+()=>{const d=distinct(R(6,9)),k=nz(d),pos=d.length-1-k,t=R(0,1)==1,sp=t?pos:pick(P.map((_,i)=>i).filter(i=>i!=pos&&i<d.length));return{t:'tf',q:`در عدد ${f(num(d))}، رقم ${fa(d[k])} در مرتبهٔ ${P[sp]} قرار دارد.`,a:t,e:`رقم ${fa(d[k])} در مرتبهٔ ${P[pos]} است.`}},
+()=>{const n=R(12,987),p=R(1,3),t=R(0,1)==1,x=n*10**p,s=t?x:n*10**(p+pick([-1,1]));return{t:'tf',q:`${f(n)} × ${f(10**p)} = ${f(s)}`,a:t,e:`جواب درست: ${f(x)}`}},
+()=>{const x=pick(NQ)(),t=R(0,1)==1;return{t:'tf',q:`${x.t} برابر ${f(t?x.a:x.a*pick([10,100]))} است.`,a:t,e:`جواب درست: ${f(x.a)}`}},
+()=>{const d=distinct(4),p=R(1,3),t=R(0,1)==1;return{t:'tf',q:`اگر عدد ${f(num(d))} را ${f(10**p)} برابر کنیم، ${fa(p)} صفر به سمت راست آن اضافه می‌شود${t?'':' و ارزش رقم‌ها تغییری نمی‌کند'}.`,a:t,e:`ضرب در ${f(10**p)} یعنی ${fa(p)} صفر در سمت راست؛ ارزش رقم‌ها ${fa(p)} مرتبه بالاتر می‌رود.`}}],
+desc:[
+()=>{const d=distinct(8),n=num(d);return{t:'text',q:`با توجه به عدد «${f(n)}» پاسخ دهید.\nالف) اختلاف رقم‌های بزرگ‌ترین طبقه چند است؟\nب) در باارزش‌ترین مرتبهٔ این عدد کدام رقم قرار دارد؟\nج) عدد را به حروف بنویسید.`,a:`الف) ${fa(Math.abs(d[0]-d[1]))}\nب) رقم ${fa(d[0])} (مرتبهٔ ده‌میلیون)\nج) ${words(n)}`}},
+()=>{const x=cardQ();return{t:'text',q:x.q+'.',a:`دو عدد ${fa(x.pair[0])} و ${fa(x.pair[1])}؛ حاصل = ${f(x.a)}`}},
+()=>{const d=distinct(4),k=nz(d),p=R(1,4),n=num(d);return{t:'text',q:`اگر عدد ${f(n)} را ${f(10**p)} برابر کنیم، رقم ${fa(d[k])} چه مرتبه‌ای پیدا می‌کند؟ عدد جدید را هم بنویسید.`,a:`عدد جدید: ${f(n*10**p)}\nرقم ${fa(d[k])} در مرتبهٔ ${P[3-k+p]} قرار می‌گیرد.`}},
+()=>{const x=pick(NQ)();return{t:'text',q:x.t+' چند می‌شود؟ (راه حل را بنویسید)',a:f(x.a)}},
+()=>{const p=R(11,99),r=R(11,99),X=p*1e6+r*1e4;return{t:'text',q:`عدد ${f(X)} را به حروف بنویسید و بگویید از چند تا یک‌میلیون و چند تا ده‌هزار ساخته شده است.`,a:`${words(X)}\n${fa(p)} تا یک‌میلیون و ${fa(r)} تا ده‌هزار`}}]};
+function crossQ(){for(;;){const a=R(1,5),s=[0,1,2,3,4].map(i=>a+i),sum=5*a+10,c=pick(s);if((sum+c)%2)continue;const S=(sum+c)/2,T=S-c,r=s.filter(x=>x!=c);
+ const sp=[[0,1,2,3],[0,2,1,3],[0,3,1,2]].map(p=>[[r[p[0]],r[p[1]]],[r[p[2]],r[p[3]]]]).find(p=>p[0][0]+p[0][1]==T&&p[1][0]+p[1][1]==T);
+ if(sp)return{s,c,S,sp}}}
+const CX='<svg viewBox="0 0 150 150" width="120" height="120" style="display:block;margin:8px auto" fill="none" stroke="currentColor" stroke-width="2"><rect x="55" y="15" width="40" height="40"/><rect x="15" y="55" width="40" height="40"/><rect x="55" y="55" width="40" height="40"/><rect x="95" y="55" width="40" height="40"/><rect x="55" y="95" width="40" height="40"/></svg>';
+const crossTxt=x=>`عددهای ${x.s.map(fa).join('، ')} را در شکل زیر طوری قرار دهید که مجموع ۳ عدد افقی با مجموع ۳ عدد عمودی برابر باشد و هر کدام ${fa(x.S)} شود.`;
+G.fill.push(()=>{const x=crossQ();return{t:'fill',q:crossTxt(x)+' عدد وسط چند است؟ ___'+CX,a:[x.c]}});
+G.desc.push(()=>{const x=crossQ();return{t:'text',q:crossTxt(x)+CX,a:`عدد وسط: ${fa(x.c)}\nردیف افقی: ${fa(x.sp[0][0])}، ${fa(x.c)}، ${fa(x.sp[0][1])} (مجموع ${fa(x.S)})\nردیف عمودی: ${fa(x.sp[1][0])}، ${fa(x.c)}، ${fa(x.sp[1][1])} (مجموع ${fa(x.S)})`}});
+const KINDS=[['mc','چهارگزینه‌ای','انتخاب پاسخ درست از بین ۴ گزینه',10],['fill','جای خالی','عدد مناسب را بنویس',8],['tf','درست یا نادرست','',10],['desc','تشریحی','خودت حل کن، بعد پاسخ را ببین',5],['mix','ترکیبی','از هر نوع چند سؤال',12]];
+KINDS[2][2]='درستی هر جمله را مشخص کن';
+let ex=[],kind='mc',done=false;
+const gen=(k,n)=>{if(k=='mix')return['mc','fill','tf','desc'].flatMap(x=>gen(x,3));let out=[],bag=[];const a=G[k];while(out.length<n){if(!bag.length)bag=sh(a.map((_,i)=>i));out.push(a[bag.pop()]())}return out};
+const $=id=>document.getElementById(id),app=$('app');
+const CH='<a class="ch" href="https://rubika.ir/schoolp5" target="_blank" rel="noopener"><b>📢 کانال روبیکا: <bdi dir="ltr">@schoolp5</bdi></b><span>آزمون‌ها و مطالب تازهٔ پنجم دبستان را در کانال ما دنبال کنید</span><u>ورود به کانال روبیکا</u></a>';
+function menu(){app.innerHTML=`<h1>آزمون ریاضی پنجم – درس اول</h1><p class="s">عددهای بزرگ، مرتبه‌ها، ضرب و تقسیم. هر بار سؤال‌های تازه ساخته می‌شود.</p><div class="menu">${KINDS.map(k=>`<button data-k="${k[0]}"><b>${k[1]} (${fa(k[3])} سؤال)</b><span>${k[2]}</span></button>`).join('')}</div>${CH}`}
+function start(k){kind=k;done=false;ex=gen(k,KINDS.find(x=>x[0]==k)[3]);draw()}
+function draw(){app.innerHTML=`<h1>${KINDS.find(x=>x[0]==kind)[1]}</h1><div id="sc"></div>`+ex.map((x,i)=>{
+ let b='',q=x.q;
+ if(x.t=='mc')b=x.o.map((o,j)=>`<button class="o${x.s===j?' sel':''}" data-q="${i}" data-o="${j}">${o}</button>`).join('');
+ else if(x.t=='tf')b=`<div class="row"><button class="o${x.s===true?' sel':''}" data-q="${i}" data-v="1">درست</button><button class="o${x.s===false?' sel':''}" data-q="${i}" data-v="0">نادرست</button></div>`;
+ else if(x.t=='fill'){let j=0;q=q.replace(/___/g,()=>`<input inputmode="numeric" data-q="${i}" data-j="${j++}">`)}
+ else b=`<button class="o" data-show="${i}">نمایش پاسخ</button><div class="a" id="a${i}">${x.a}</div>`;
+ return`<div class="q" id="q${i}"><span class="n">${fa(i+1)}.</span><span class="t">${q}</span>${b}<div class="a" id="r${i}"></div></div>`}).join('')+`<button class="btn" id="sub">پایان آزمون و دیدن نمره</button><button class="btn g" data-k="${kind}">آزمون جدید از همین نوع</button><button class="btn g" id="home">بازگشت به فهرست</button>${CH}`}
+const dg=s=>s.replace(/[۰-۹]/g,c=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(c)).replace(/[٠-٩]/g,c=>c.charCodeAt(0)-1632).replace(/[^\d]/g,'');
+function grade(){if(done)return;done=true;let ok=0,tot=0;
+ ex.forEach((x,i)=>{if(x.t=='text')return;tot++;const el=$('q'+i),r=$('r'+i);let good=false,ans='';
+  if(x.t=='mc'){good=x.s===x.c;ans=x.e}
+  else if(x.t=='tf'){good=x.s===x.a;ans=(x.a?'درست':'نادرست')+(x.e?' — '+x.e:'')}
+  else{const v=[...el.querySelectorAll('input')].map(n=>dg(n.value)===''?NaN:+dg(n.value));good=v.every((n,j)=>n===x.a[j]);ans=x.a.map(f).join('، ')}
+  if(good)ok++;el.classList.add(good?'ok':'bad');r.textContent=(good?'✓ آفرین! ':'✗ پاسخ درست: ')+(good?'':ans);r.classList.add('show')});
+ ex.forEach((x,i)=>{if(x.t=='text')$('a'+i).classList.add('show')});
+ if(tot)$('sc').innerHTML=`<div class="sc">نمرهٔ تو: ${fa(ok)} از ${fa(tot)}</div>`;else $('sc').innerHTML='<div class="sc">پاسخ‌ها را با جواب خودت مقایسه کن 👍</div>';
+ scrollTo({top:0,behavior:'smooth'})}
+document.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;
+ if(t.dataset.k)return start(t.dataset.k);
+ if(t.id=='home')return menu();
+ if(t.id=='sub')return grade();
+ if(t.dataset.show){$('a'+t.dataset.show).classList.toggle('show');return}
+ if(done||t.dataset.q===undefined)return;
+ const x=ex[+t.dataset.q];x.s=t.dataset.o!==undefined?+t.dataset.o:t.dataset.v=='1';
+ t.parentElement.querySelectorAll('.o').forEach(b=>b.classList.remove('sel'));t.classList.add('sel')});
+menu();
+</script>
+</body>
+</html>
